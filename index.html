@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ChuvAlerta: protótipo que mede a altura da água na rua e avisa sobre alagamentos, mesmo sem internet.">
+  <title>ChuvAlerta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Lexend:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3.5C12.2 9.2 7.5 14 7.5 20a8.5 8.5 0 0 0 17 0c0-6-4.7-10.8-8.5-16.5Z" fill="currentColor"/>
+            <path d="M12 20.5c0 2.2 1.6 3.8 3.8 4" stroke="#07131f" stroke-linecap="round" stroke-width="2"/>
+          </svg>
+        </span>
+        <span>Chuv<span class="brand-light">Alerta</span></span>
+      </a>
+
+      <button class="menu-toggle" id="btn-menu" type="button" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="menu">
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#tecnologia">Tecnologia</a></li>
+        <li><a href="#objetivos">Objetivos</a></li>
+        <li><a href="#publico-alvo">Público-alvo</a></li>
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a class="nav-cta" href="#simulador">Testar alerta</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow eyebrow-light">São Paulo · Global Solution 2026</span>
+          <h1>A rua avisa.<br><span>Você muda o caminho.</span></h1>
+          <p class="hero-description">Um aviso no próprio local mostra a altura da água e funciona mesmo sem internet.</p>
+          <div class="hero-actions">
+            <a class="button button-lime" href="#tecnologia">Conheça o projeto</a>
+            <a class="text-link text-link-light" href="#problema">Por que isso importa?</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img class="hero-photo" src="assets/hero.jpg" alt="Rua de bairro em São Paulo alagada durante a chuva à noite, com o poste do sensor ChuvAlerta na calçada">
+          <span class="scene-caption">Sensor instalado no ponto mais baixo da rua</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem section-pad" id="problema">
+      <div class="section-shell problem-grid">
+        <div class="problem-copy">
+          <span class="eyebrow">01 · Problema</span>
+          <h2>O perigo aparece<br>antes do aviso.</h2>
+          <p class="section-intro">Em ruas que alagam, a água sobe rápido e muita gente só descobre a profundidade quando já está na água.</p>
+
+          <span class="evidence-title">Alagamentos recentes em SP</span>
+          <ul class="problem-evidence">
+            <li>07/01/2026: ao menos 22 alagamentos registrados pelo CGE na capital. <a href="https://www.metropoles.com/sao-paulo/chuva-alagamentos-em-sp" target="_blank" rel="noopener">Metrópoles</a></li>
+            <li>Setembro de 2026: o mais chuvoso em 32 anos de medição do CGE. <a href="https://www.band.com.br/nacional/zonas-leste-e-sul-concentram-transito-em-sao-paulo-cidade-tem-alagamentos" target="_blank" rel="noopener">Band</a></li>
+            <li>14/10/2026: motoristas resgatados e túnel do Anhangabaú alagado. <a href="https://www.em.com.br/nacional/2026/10/7520945-chuvas-em-sao-paulo-causam-alagamentos-em-metro-tuneis-e-ruas-da-capital.html" target="_blank" rel="noopener">Estado de Minas</a></li>
+          </ul>
+
+          <a class="text-link" href="#tecnologia">Veja a tecnologia usada</a>
+        </div>
+
+        <div class="threshold-card">
+          <span class="threshold-kicker">Um limite que importa</span>
+          <div class="threshold-number">15<span>cm</span></div>
+          <p>Água em movimento nessa altura já pode derrubar um adulto.</p>
+          <span class="threshold-source">Fonte: National Weather Service (EUA)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="solution section-pad" id="tecnologia">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow eyebrow-light">02 · Tecnologia</span>
+            <h2>Como o ChuvAlerta<br><span>funciona.</span></h2>
+          </div>
+          <p class="heading-aside">Um sensor mede a água, um programa classifica o risco e o aviso aparece na rua.</p>
+        </div>
+
+        <div class="solution-grid">
+          <article class="solution-card solution-card-main">
+            <div class="card-icon card-icon-lime">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 4 5 10v12l11 6 11-6V10L16 4Z" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M11 16h10M16 11v10" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/>
+              </svg>
+            </div>
+            <span class="card-label">Arduino + sensor</span>
+            <h3>Mede e avisa no local</h3>
+            <p>O sensor ultrassônico mede a distância até a água e aciona luz, som e visor.</p>
+          </article>
+
+          <article class="solution-card">
+            <div class="card-icon card-icon-blue">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M7 6h18v20H7zM11 11h10M11 16h10M11 21h6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/>
+              </svg>
+            </div>
+            <span class="card-label">Python</span>
+            <h3>Classifica o risco</h3>
+            <p>Um programa guarda as leituras e diz se o nível está normal, em atenção ou em perigo.</p>
+          </article>
+
+          <article class="solution-card">
+            <div class="card-icon card-icon-coral">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M5 24h22M8 21V12h5v9M17 21V7h6v14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/>
+                <path d="m8 9 6-4 5 2 6-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"/>
+              </svg>
+            </div>
+            <span class="card-label">Matemática</span>
+            <h3>Estima o tempo</h3>
+            <p>Uma função calcula quanto tempo a água leva para sair da atenção e chegar ao perigo.</p>
+          </article>
+        </div>
+
+        <div class="technology-strip">
+          <span>Feito com</span>
+          <span class="tech-chip"><i class="tech-dot"></i>Arduino</span>
+          <span class="tech-chip"><i class="tech-dot tech-python"></i>Python</span>
+          <span class="tech-chip"><i class="tech-dot tech-web"></i>HTML, CSS e JS</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="levels section-pad" id="objetivos">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">03 · Objetivos</span>
+            <h2>Avisar no local e<br>orientar a atitude.</h2>
+          </div>
+          <p class="heading-aside">Cada nível de água mostra o que a pessoa deve fazer naquele momento.</p>
+        </div>
+
+        <div class="levels-grid">
+          <article class="level-card level-normal">
+            <span class="level-top"><span class="level-signal"></span>Monitorar</span>
+            <div class="level-measure">&lt;15<span>cm</span></div>
+            <h3>Normal</h3>
+            <p>A água está abaixo do limite. Continue acompanhando a chuva.</p>
+          </article>
+
+          <article class="level-card level-attention">
+            <span class="level-top"><span class="level-signal"></span>Evitar</span>
+            <div class="level-measure">15 a 29<span>cm</span></div>
+            <h3>Atenção</h3>
+            <p>Evite a rua alagada e avise quem estiver por perto.</p>
+          </article>
+
+          <article class="level-card level-danger">
+            <span class="level-top"><span class="level-signal"></span>Não atravessar</span>
+            <div class="level-measure">30+<span>cm</span></div>
+            <h3>Perigo</h3>
+            <p>Não atravesse. Saia de perto da água e procure um lugar seguro.</p>
+          </article>
+        </div>
+
+        <div class="simulator-box" id="simulador">
+          <div class="simulator-copy">
+            <h3>Teste o alerta</h3>
+            <span class="simulator-hint">Digite uma altura de água. Os valores são seus, não vêm do sensor.</span>
+          </div>
+
+          <div class="simulator-panel">
+            <label for="nivel-agua">Altura da água (cm)</label>
+            <div class="input-row">
+              <div class="number-field">
+                <input id="nivel-agua" type="number" min="0" max="500" placeholder="Ex.: 18">
+                <span>cm</span>
+              </div>
+              <button class="button button-dark" id="btn-simular" type="button">Ver alerta</button>
+            </div>
+
+            <div class="quick-values">
+              <span>Testar:</span>
+              <button type="button" data-level="10">10 cm</button>
+              <button type="button" data-level="20">20 cm</button>
+              <button type="button" data-level="35">35 cm</button>
+            </div>
+
+            <div class="simulator-result" id="resultado-simulador">
+              <span class="result-text">Digite um valor para ver o resultado.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience section-pad" id="publico-alvo">
+      <div class="section-shell audience-grid">
+        <div class="audience-copy">
+          <span class="eyebrow eyebrow-light">04 · Público-alvo</span>
+          <h2>Feito para quem<br><span>conhece a rua.</span></h2>
+          <p>Moradores de áreas que alagam e quem passa pelo ponto crítico todos os dias.</p>
+          <ul class="audience-tags">
+            <li>Moradores</li>
+            <li>Pedestres</li>
+            <li>Idosos</li>
+            <li>Pessoas com baixa visão</li>
+          </ul>
+          <p class="audience-note">Associação de bairro, subprefeitura e Defesa Civil podem ser parceiros no futuro.</p>
+        </div>
+
+        <div class="showcase">
+          <div class="showcase-frame">
+            <img class="slide" src="assets/rua.jpg" alt="Rua residencial de São Paulo sob chuva à noite, com água começando a acumular junto à calçada">
+            <img class="slide" src="assets/sensor.jpg" alt="Sensor ultrassônico no topo do poste medindo a distância até a água da rua">
+            <img class="slide" src="assets/alerta.jpg" alt="Rua alagada com o poste do sensor emitindo luz de alerta e um pedestre desviando do caminho">
+            <span class="showcase-count" id="legenda-slide"></span>
+          </div>
+          <div class="showcase-controls">
+            <span class="showcase-caption">Antes, durante e no momento do alerta.</span>
+            <div class="slide-buttons">
+              <button id="btn-anterior" type="button" aria-label="Foto anterior">←</button>
+              <button id="btn-proximo" type="button" aria-label="Próxima foto">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits section-pad" id="beneficios">
+      <div class="section-shell">
+        <span class="eyebrow">05 · Benefícios</span>
+        <h2>Mais tempo para<br>escolher outro caminho.</h2>
+
+        <div class="benefits-row">
+          <div class="benefit-list">
+            <article class="benefit-item">
+              <h3>Aviso para todo mundo</h3>
+              <p>Luz, som e texto ajudam quem não enxerga bem ou não ouve bem.</p>
+            </article>
+            <article class="benefit-item">
+              <h3>Decisão com informação</h3>
+              <p>Sabendo o nível, a pessoa decide se desvia e avisa os vizinhos.</p>
+            </article>
+            <article class="benefit-item">
+              <h3>Fácil de levar para outros pontos</h3>
+              <p>Depois de testado, cada ponto crítico pode ganhar o seu sensor.</p>
+            </article>
+          </div>
+
+          <div class="impact-card">
+            <span class="impact-number">7,2</span>
+            <span class="impact-unit">minutos</span>
+            <p>entre atenção e perigo numa chuva forte, segundo o nosso modelo.</p>
+            <span class="impact-caveat">Estimativa ainda sem dados reais.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section-shell footer-top">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3.5C12.2 9.2 7.5 14 7.5 20a8.5 8.5 0 0 0 17 0c0-6-4.7-10.8-8.5-16.5Z" fill="currentColor"/>
+            <path d="M12 20.5c0 2.2 1.6 3.8 3.8 4" stroke="#07131f" stroke-linecap="round" stroke-width="2"/>
+          </svg>
+        </span>
+        <span>Chuv<span class="brand-light">Alerta</span></span>
+      </a>
+      <p>Projeto ligado aos ODS 11 e 13.</p>
+      <a class="back-top" href="#inicio">Voltar ao topo ↑</a>
+    </div>
+    <div class="section-shell footer-bottom">
+      <span>Global Solution 2026 · FIAP · CitizenTech</span>
+      <span>Protótipo acadêmico. Em caso de alagamento, siga a Defesa Civil.</span>
+    </div>
+  </footer>
+</body>
+</html>
