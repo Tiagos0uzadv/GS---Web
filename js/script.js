@@ -114,3 +114,63 @@ botoesTeste.forEach(function (botao) {
     simularAlerta();
   });
 });
+const formulario = document.getElementById("form-contato");
+const campos = formulario.querySelectorAll("input, textarea");
+const avisoForm = document.getElementById("aviso-form");
+
+function mostrarErro(campo, texto) {
+  const erro = document.getElementById("erro-" + campo.id);
+  erro.textContent = texto;
+
+  if (texto === "") {
+    campo.parentElement.classList.remove("invalido");
+  } else {
+    campo.parentElement.classList.add("invalido");
+  }
+}
+
+function validarCampo(campo) {
+  const valor = campo.value.trim();
+
+  if (valor === "") {
+    mostrarErro(campo, "Preencha este campo.");
+    return false;
+  }
+
+  if (campo.id === "email" && (valor.indexOf("@") === -1 || valor.indexOf(".") === -1)) {
+    mostrarErro(campo, "Digite um e-mail válido.");
+    return false;
+  }
+
+  mostrarErro(campo, "");
+  return true;
+}
+
+formulario.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+  let tudoCerto = true;
+
+  campos.forEach(function (campo) {
+    if (!validarCampo(campo)) {
+      tudoCerto = false;
+    }
+  });
+
+  if (tudoCerto) {
+    const nome = document.getElementById("nome").value.trim();
+    avisoForm.className = "aviso-form sucesso";
+    avisoForm.textContent = "Obrigado, " + nome + "! Recebemos o seu aviso.";
+    formulario.reset();
+  } else {
+    avisoForm.className = "aviso-form falha";
+    avisoForm.textContent = "Preencha todos os campos antes de enviar.";
+  }
+});
+
+campos.forEach(function (campo) {
+  campo.addEventListener("input", function () {
+    if (campo.parentElement.classList.contains("invalido")) {
+      validarCampo(campo);
+    }
+  });
+});
