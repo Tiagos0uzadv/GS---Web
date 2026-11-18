@@ -4,25 +4,26 @@ Global Solution 2026.2 · CitizenTech · Web Development
 
 ## Ferramenta
 
-Claude (Anthropic), em 15/11/2026.
+Claude (Anthropic), em 18/11/2026.
 
-## O que foi gerado com IA
+## Como a IA foi usada
 
-- O arquivo `script.js`: slideshow com 3 imagens, validação do formulário, menu responsivo e simulador de risco.
-- O guia interno da equipe com a lista de identificadores usados pelo script.
+- Conferir o projeto contra os critérios da avaliação.
+- Testar se a página e o JavaScript estavam funcionando.
 
-## O que não foi gerado com IA
 
-- O HTML e o CSS da página, escritos pela equipe (a disciplina de Front-end Design não permite IA).
-- Os commits, as branches e a organização no GitHub.
-- [Completar com o que mais a equipe fez por conta própria.]
+## O que foi feito pela equipe
 
-## Prompts
+- HTML, CSS, fotos e o JavaScript do slideshow, do menu e do simulador vieram da entrega de Front-end Design.
+- Organização do repositório: branches, commits, push, pull requests e merges para a main.
+- Revisão do código antes de cada commit e testes da página no navegador.
 
-> Quero que você atue como um especialista acadêmico [...]. Sua missão é desenvolver e executar meu trabalho acadêmico inteiro, do início ao fim [...].
+## Prompts usados
 
-[Acrescentar os demais prompts usados, com data.]
+1. "Verifica tudo o que o professor pediu e manda o que falta." (18/11/2026)
+2. "Prepara o espaço onde vou trabalhar, vamos fazer por fase." (18/11/2026)
 
-## Alterações da equipe no código gerado
+## Alterações da equipe
 
-[Descrever o que foi testado, corrigido, adaptado ou removido.]
+- O script.js antigo não funcionava com o CSS da página e foi substituído pelo da entrega de Front-end Design.
+- O guia interno da pasta docs foi removido por não fazer parte do site.
