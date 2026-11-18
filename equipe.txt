@@ -6,4 +6,4 @@ Tiago dos Santos - RM574698
 Felipe Fontes - RM575679
 
 Repositório GitHub:
-https://github.com/Tiagos0uzadv/GS---Web
+https://github.com/chuvalerta-fiap/GS---Web
