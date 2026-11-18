@@ -964,6 +964,103 @@ h1 span,
   font-size: 12px;
 }
 
+.contact {
+  background: var(--fundo-branco);
+}
+
+.contact-grid {
+  display: flex;
+  gap: 80px;
+}
+
+.contact-copy {
+  flex: 1;
+}
+
+.contact-copy p {
+  margin-top: 20px;
+  color: var(--texto-suave);
+}
+
+.contact-form {
+  flex: 1.2;
+  padding: 30px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.campo {
+  margin-bottom: 18px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cdd5d0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: #5997c4;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(89, 151, 196, 0.3);
+}
+
+.campo.invalido input,
+.campo.invalido textarea {
+  border-color: var(--vermelho);
+}
+
+.erro {
+  display: block;
+  min-height: 20px;
+  margin-top: 4px;
+  color: var(--vermelho);
+  font-size: 13px;
+}
+
+.contact-form .button {
+  cursor: pointer;
+}
+
+.aviso-form {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.aviso-form.sucesso {
+  color: var(--verde);
+}
+
+.aviso-form.falha {
+  color: var(--vermelho);
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .contact-form {
+    padding: 22px;
+  }
+}
+
 @media (max-width: 1024px) {
   .menu-toggle {
     display: flex;
