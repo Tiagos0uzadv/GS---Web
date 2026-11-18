@@ -1,11 +1,9 @@
 ChuvAlerta - Global Solution 2026.2 - Web Development
 
 Integrantes:
-[Nome completo] - RM [numero]
-[Nome completo] - RM [numero]
-[Nome completo] - RM [numero]
-[Nome completo] - RM [numero]
-[Nome completo] - RM [numero]
+Cauã Almeida Moura - RM576135
+Tiago dos Santos - RM574698
+Felipe Fontes - RM575679
 
-Repositorio GitHub:
-[link do repositorio]
+Repositório GitHub:
+https://github.com/Tiagos0uzadv/GS---Web
