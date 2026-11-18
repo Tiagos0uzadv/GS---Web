@@ -1,165 +1,116 @@
-// ============================================================
-// ChuvAlerta - Global Solution 2026.2 - CitizenTech
-// Disciplina: Web Development
-// JavaScript puro, sem frameworks.
-//
-// A pagina precisa ter os elementos com os ids e classes
-// listados no arquivo guia-webdev.md.
-// ============================================================
+const slides = document.querySelectorAll(".slide");
+const botaoAnterior = document.getElementById("btn-anterior");
+const botaoProximo = document.getElementById("btn-proximo");
+const legenda = document.getElementById("legenda-slide");
+let slideAtual = 0;
 
-// ---------------- 1. SLIDESHOW COM 3 IMAGENS ----------------
-
-var slides = document.querySelectorAll(".slide");          // as 3 imagens
-var botaoAnterior = document.getElementById("btn-anterior");
-var botaoProximo = document.getElementById("btn-proximo");
-var legenda = document.getElementById("legenda-slide");
-var slideAtual = 0;
-var TEMPO_TROCA_MS = 5000;
-
-// Mostra so a imagem da posicao pedida e esconde as outras
-function mostrarSlide(posicao) {
-  for (var i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+function mostrarSlide(numero) {
+  if (numero < 0) {
+    numero = slides.length - 1;
   }
-  slides[posicao].style.display = "block";
 
-  // a legenda usa o texto alternativo da imagem
-  if (legenda) {
-    legenda.textContent = slides[posicao].alt + " (" + (posicao + 1) + " de " + slides.length + ")";
+  if (numero >= slides.length) {
+    numero = 0;
   }
+
+  slides.forEach(function (slide) {
+    slide.classList.remove("ativo");
+  });
+
+  slides[numero].classList.add("ativo");
+  legenda.textContent = (numero + 1) + " / " + slides.length;
+  slideAtual = numero;
 }
 
-function proximoSlide() {
-  slideAtual = slideAtual + 1;
-  if (slideAtual >= slides.length) {
-    slideAtual = 0;                 // depois da ultima volta para a primeira
-  }
-  mostrarSlide(slideAtual);
-}
+botaoAnterior.addEventListener("click", function () {
+  mostrarSlide(slideAtual - 1);
+});
 
-function slideAnterior() {
-  slideAtual = slideAtual - 1;
-  if (slideAtual < 0) {
-    slideAtual = slides.length - 1; // antes da primeira vai para a ultima
-  }
-  mostrarSlide(slideAtual);
-}
+botaoProximo.addEventListener("click", function () {
+  mostrarSlide(slideAtual + 1);
+});
 
-if (slides.length > 0) {
-  mostrarSlide(slideAtual);
-  botaoProximo.addEventListener("click", proximoSlide);
-  botaoAnterior.addEventListener("click", slideAnterior);
-  setInterval(proximoSlide, TEMPO_TROCA_MS);   // troca sozinho a cada 5 segundos
-}
+setInterval(function () {
+  mostrarSlide(slideAtual + 1);
+}, 6000);
 
-// ---------------- 2. FORMULARIO COM VALIDACAO ----------------
+mostrarSlide(0);
 
-var formulario = document.getElementById("form-contato");
-var campoNome = document.getElementById("nome");
-var campoEmail = document.getElementById("email");
-var campoMensagem = document.getElementById("mensagem");
-var avisoFormulario = document.getElementById("aviso-form");
+const botaoMenu = document.getElementById("btn-menu");
+const menu = document.getElementById("menu");
+const linksMenu = document.querySelectorAll(".nav-links a");
 
-// Marca o campo com erro e escreve a mensagem embaixo dele
-function mostrarErro(campo, texto) {
-  campo.style.borderColor = "#c8452c";
-  var erro = document.getElementById("erro-" + campo.id);
-  if (erro) {
-    erro.textContent = texto;
-  }
-}
+botaoMenu.addEventListener("click", function () {
+  menu.classList.toggle("aberto");
+});
 
-function limparErro(campo) {
-  campo.style.borderColor = "";
-  var erro = document.getElementById("erro-" + campo.id);
-  if (erro) {
-    erro.textContent = "";
-  }
-}
+linksMenu.forEach(function (link) {
+  link.addEventListener("click", function () {
+    menu.classList.remove("aberto");
+  });
+});
 
-function validarFormulario(evento) {
-  evento.preventDefault();          // impede o envio ate conferir os campos
-  var formularioValido = true;
+const secoes = document.querySelectorAll("main section");
 
-  limparErro(campoNome);
-  limparErro(campoEmail);
-  limparErro(campoMensagem);
+function marcarSecaoAtual() {
+  let secaoAtual = "";
 
-  if (campoNome.value.trim() === "") {
-    mostrarErro(campoNome, "Digite seu nome.");
-    formularioValido = false;
-  }
+  secoes.forEach(function (secao) {
+    if (window.scrollY >= secao.offsetTop - 150) {
+      secaoAtual = secao.id;
+    }
+  });
 
-  if (campoEmail.value.trim() === "") {
-    mostrarErro(campoEmail, "Digite seu e-mail.");
-    formularioValido = false;
-  } else if (campoEmail.value.indexOf("@") === -1 || campoEmail.value.indexOf(".") === -1) {
-    mostrarErro(campoEmail, "Digite um e-mail valido, com @ e ponto.");
-    formularioValido = false;
-  }
+  linksMenu.forEach(function (link) {
+    link.classList.remove("ativo");
 
-  if (campoMensagem.value.trim() === "") {
-    mostrarErro(campoMensagem, "Escreva sua mensagem.");
-    formularioValido = false;
-  }
-
-  if (formularioValido) {
-    avisoFormulario.textContent = "Mensagem recebida. Obrigado, " + campoNome.value.trim() + "!";
-    avisoFormulario.style.color = "#2e8b57";
-    formulario.reset();
-  } else {
-    avisoFormulario.textContent = "Confira os campos destacados.";
-    avisoFormulario.style.color = "#c8452c";
-  }
-}
-
-if (formulario) {
-  formulario.addEventListener("submit", validarFormulario);
-}
-
-// ---------------- 3. MENU RESPONSIVO (DOM + CSS) ----------------
-
-var botaoMenu = document.getElementById("btn-menu");
-var menu = document.getElementById("menu");
-
-// Em telas pequenas, o botao abre e fecha o menu trocando uma classe.
-// O CSS da pagina decide como a classe "aberto" aparece.
-if (botaoMenu && menu) {
-  botaoMenu.addEventListener("click", function () {
-    menu.classList.toggle("aberto");
+    if (link.getAttribute("href") === "#" + secaoAtual) {
+      link.classList.add("ativo");
+    }
   });
 }
 
-// ---------------- 4. SIMULADOR DE RISCO (DOM) ----------------
-// Usa os mesmos limites do sensor e do programa em Python.
+window.addEventListener("scroll", marcarSecaoAtual);
+marcarSecaoAtual();
 
-var campoNivel = document.getElementById("nivel-agua");
-var botaoSimular = document.getElementById("btn-simular");
-var resultadoSimulador = document.getElementById("resultado-simulador");
-var LIMITE_ATENCAO = 15;
-var LIMITE_PERIGO = 30;
+const campoNivel = document.getElementById("nivel-agua");
+const botaoSimular = document.getElementById("btn-simular");
+const resultado = document.getElementById("resultado-simulador");
+const textoResultado = resultado.querySelector(".result-text");
+const botoesTeste = document.querySelectorAll(".quick-values button");
 
-function simularRisco() {
-  var nivel = Number(campoNivel.value);
+function simularAlerta() {
+  const nivel = Number(campoNivel.value);
 
-  if (campoNivel.value.trim() === "" || isNaN(nivel) || nivel < 0) {
-    resultadoSimulador.textContent = "Digite a altura da agua em centimetros.";
-    resultadoSimulador.style.color = "#c8452c";
+  if (campoNivel.value === "" || nivel < 0 || nivel > 500) {
+    resultado.className = "simulator-result erro";
+    textoResultado.textContent = "Digite uma altura entre 0 e 500 cm.";
     return;
   }
 
-  if (nivel >= LIMITE_PERIGO) {
-    resultadoSimulador.textContent = "PERIGO: nao atravesse. Va para um lugar alto.";
-    resultadoSimulador.style.color = "#c8452c";
-  } else if (nivel >= LIMITE_ATENCAO) {
-    resultadoSimulador.textContent = "ATENCAO: evite a rua e avise os vizinhos.";
-    resultadoSimulador.style.color = "#b37a00";
+  if (nivel >= 30) {
+    resultado.className = "simulator-result perigo";
+    textoResultado.textContent = "PERIGO: não atravesse. Saia de perto da água e procure um lugar seguro.";
+  } else if (nivel >= 15) {
+    resultado.className = "simulator-result atencao";
+    textoResultado.textContent = "ATENÇÃO: evite a rua alagada e avise quem estiver por perto.";
   } else {
-    resultadoSimulador.textContent = "NORMAL: passagem livre. Continue acompanhando.";
-    resultadoSimulador.style.color = "#2e8b57";
+    resultado.className = "simulator-result normal";
+    textoResultado.textContent = "NORMAL: a água está abaixo do limite. Continue acompanhando.";
   }
 }
 
-if (botaoSimular) {
-  botaoSimular.addEventListener("click", simularRisco);
-}
+botaoSimular.addEventListener("click", simularAlerta);
+
+campoNivel.addEventListener("keydown", function (evento) {
+  if (evento.key === "Enter") {
+    simularAlerta();
+  }
+});
+
+botoesTeste.forEach(function (botao) {
+  botao.addEventListener("click", function () {
+    campoNivel.value = botao.getAttribute("data-level");
+    simularAlerta();
+  });
+});
