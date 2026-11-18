@@ -35,3 +35,40 @@ setInterval(function () {
 }, 6000);
 
 mostrarSlide(0);
+
+const botaoMenu = document.getElementById("btn-menu");
+const menu = document.getElementById("menu");
+const linksMenu = document.querySelectorAll(".nav-links a");
+
+botaoMenu.addEventListener("click", function () {
+  menu.classList.toggle("aberto");
+});
+
+linksMenu.forEach(function (link) {
+  link.addEventListener("click", function () {
+    menu.classList.remove("aberto");
+  });
+});
+
+const secoes = document.querySelectorAll("main section");
+
+function marcarSecaoAtual() {
+  let secaoAtual = "";
+
+  secoes.forEach(function (secao) {
+    if (window.scrollY >= secao.offsetTop - 150) {
+      secaoAtual = secao.id;
+    }
+  });
+
+  linksMenu.forEach(function (link) {
+    link.classList.remove("ativo");
+
+    if (link.getAttribute("href") === "#" + secaoAtual) {
+      link.classList.add("ativo");
+    }
+  });
+}
+
+window.addEventListener("scroll", marcarSecaoAtual);
+marcarSecaoAtual();
